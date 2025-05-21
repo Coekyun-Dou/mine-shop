@@ -1,0 +1,21 @@
+<view class = "swiper">
+  <swiper
+    class = "myswiper"
+    indicator-dots="{{ indicatorDots }}" 
+    autoplay="{{ autoplay }}" 
+    interval="{{ interval }}" 
+    duration="{{ duration }}" 
+    indicator-color="#fff"
+    indicator-active-color="#fa2c19"
+  >
+    <swiper-item>
+      <image mode="widthFix" src="http://inwenwiki.com:3001/images/banner/1.jpg"></image>
+    </swiper-item>
+    <swiper-item>
+      <image mode="widthFix" src="http://inwenwiki.com:3001/images/banner/2.jpg"></image>
+    </swiper-item>
+    <swiper-item>
+      <image mode="widthFix" src="http://inwenwiki.com:3001/images/banner/3.jpg"></image>
+    </swiper-item>
+  </swiper>
+</view>
