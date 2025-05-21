@@ -1,5 +1,6 @@
-page({
+Page({
   data:{
+    value:""
   },
   OnLoad:{
   }

@@ -1,0 +1,9 @@
+<view class = "index-container">
+  <view class = "header"> 
+    <van-search 
+      value="{{ value }}" 
+      shape="round" 
+      background="#fa2c19" 
+      placeholder="请输入搜索内容" />
+  </view>
+</view>

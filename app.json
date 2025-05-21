@@ -10,8 +10,6 @@
     "navigationBarTitleText": "云上游荔",
     "navigationBarBackgroundColor": "#ffffff"
   },
-  "componentFramework": "glass-easel",
-  "sitemapLocation": "sitemap.json",
   "tabBar": {
     "color": "#666",
     "selectedColor": "#fa2c19",
@@ -41,6 +39,5 @@
         "selectedIconPath": "./images/yonghuguanli_huaban_select.png"
       }
     ]
-  },
-  "lazyCodeLoading": "requiredComponents"
+  }
 }

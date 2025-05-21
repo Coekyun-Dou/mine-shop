@@ -3,5 +3,6 @@
   "projectname": "mine-shop",
   "setting": {
     "compileHotReLoad": true
-  }
+  },
+  "libVersion": "3.8.4"
 }

@@ -19,3 +19,7 @@
 - #### vant weapp
 
 ​	使用vant weapp ui库
+
+- #### iconfont
+
+​	使用iconfont网站的开源组件图标
