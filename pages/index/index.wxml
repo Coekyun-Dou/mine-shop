@@ -13,4 +13,13 @@
         duration="{{swiperOptions.duration}}"
       ></swiper>
   </view>
+  <!--
+    如果要给nav导航实现跳转的话，先要设计出子页面，然后查阅vant weapp官方文档，添加子页面url即可
+    url放js文件的navdata，然后之间遍历url="{{item.url}}"即可
+  -->
+  <view class = "nav">
+    <van-grid column-num="4">
+    <van-grid-item icon-color="{{item.color}}" icon="{{item.icon}}" text="{{item.text}}" wx:for="{{ navData }}" />
+    </van-grid>
+  </view>
 </view>
