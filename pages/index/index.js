@@ -51,5 +51,13 @@ Page({
     ]
   },
   OnLoad:{
+  },
+  /** 
+  *点击搜索框，获取焦点并跳转页面
+  */
+  clickSearch(){
+    wx.navigateTo({
+      url: '/pages/search/search',
+    })
   }
 })

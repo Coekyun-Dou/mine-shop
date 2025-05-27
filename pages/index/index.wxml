@@ -1,6 +1,9 @@
 <view class = "index-container">
   <view class = "header"> 
-    <van-search 
+    <van-search
+      bind:tap="clickSearch"
+      disabled
+      bind:focus = "clickSearch"
       value="{{ value }}" 
       shape="round" 
       background="#fa2c19" 
