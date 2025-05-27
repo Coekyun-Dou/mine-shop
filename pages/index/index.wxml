@@ -22,4 +22,5 @@
     <van-grid-item icon-color="{{item.color}}" icon="{{item.icon}}" text="{{item.text}}" wx:for="{{ navData }}" />
     </van-grid>
   </view>
+  <goods-list></goods-list>
 </view>
