@@ -10,6 +10,7 @@
       placeholder="请输入搜索内容" />
       <!-- 轮播图 -->
       <swiper
+       swiperData = "{{ swiperData }} "
        indicatorDots="{{swiperOptions.indicatorDots}}"
        autoplay="{{swiperOptions.autoplay}}"
        interval="{{swiperOptions.interval}}"

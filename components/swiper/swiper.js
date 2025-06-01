@@ -19,6 +19,11 @@ Component({
     duration:{
       type:Number,
       value:500
+    },
+    swiperData:
+    {
+      type:Array,
+      value:[]
     }
   },
 

@@ -1,3 +1,5 @@
+const {getBanner} = require("../../api/index")
+
 Page({
   data:{
     value:"",
@@ -5,7 +7,19 @@ Page({
       indicatorDots:true,
       autoplay:true,
       interval:3000,
-      duration:1000
+      duration:1000,
+      swiperdata:[]
+    },
+    OnLoad( ){
+      getBanner().then(res => {
+        this.setData({
+          indicatorDots:true,
+          autoplay:true,
+          interval:3000,
+          duration:1000,
+          swiperData:res.data.data.result
+        })
+      })
     },
     navData:[
       {
