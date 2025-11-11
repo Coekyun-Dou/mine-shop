@@ -1,1 +1,143 @@
-/* pages/category/category.wxss */
+.category-page {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #fff7f5 0%, #ffffff 100%);
+}
+
+.sidebar {
+    width: 220rpx;
+    background: #ffffff;
+    box-shadow: 6rpx 0 24rpx rgba(250, 44, 25, 0.08);
+    border-top-right-radius: 24rpx;
+    border-bottom-right-radius: 24rpx;
+    padding: 24rpx 0;
+}
+
+.sidebar-custom {
+    background: transparent !important;
+}
+
+.sidebar-item {
+    padding: 28rpx 20rpx !important;
+    border-radius: 0 20rpx 20rpx 0;
+    margin: 8rpx 0;
+}
+
+.sidebar-item__title {
+    font-size: 26rpx;
+}
+
+.van-sidebar-item--selected {
+    background: linear-gradient(90deg, #fa2c19 0%, #ff7152 100%);
+    color: #ffffff !important;
+    box-shadow: 0 12rpx 24rpx rgba(250, 44, 25, 0.15);
+}
+
+.content {
+    flex: 1;
+    padding: 32rpx;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.hero {
+    position: relative;
+    border-radius: 28rpx;
+    overflow: hidden;
+    height: 260rpx;
+    margin-bottom: 32rpx;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+}
+
+.hero-mask {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+.hero-text {
+    position: absolute;
+    left: 32rpx;
+    right: 32rpx;
+    bottom: 32rpx;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 12rpx;
+}
+
+.hero-tag {
+    font-size: 24rpx;
+    opacity: 0.85;
+}
+
+.hero-title {
+    font-size: 40rpx;
+    font-weight: 600;
+}
+
+.hero-desc {
+    font-size: 24rpx;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24rpx;
+    justify-content: space-between;
+}
+
+.category-card {
+    width: calc(50% - 12rpx);
+    background: #ffffff;
+    border-radius: 24rpx;
+    box-shadow: 0 18rpx 32rpx rgba(250, 44, 25, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-card:active {
+    transform: translateY(6rpx);
+    box-shadow: 0 10rpx 24rpx rgba(250, 44, 25, 0.08);
+}
+
+.card-image {
+    width: 100%;
+    height: 210rpx;
+}
+
+.card-body {
+    padding: 24rpx 22rpx 28rpx;
+    display: flex;
+    flex-direction: column;
+    gap: 8rpx;
+}
+
+.card-title {
+    font-size: 28rpx;
+    font-weight: 600;
+    color: #191919;
+}
+
+.card-subtitle {
+    font-size: 22rpx;
+    color: #999999;
+}
+
+.empty {
+    margin-top: 120rpx;
+    text-align: center;
+    color: #999999;
+    font-size: 26rpx;
+}
+
+.empty image {
+    width: 280rpx;
+    margin-bottom: 24rpx;
+}

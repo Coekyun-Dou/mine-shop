@@ -1,30 +1,19 @@
-<view class = "index-container">
-  <view class = "header"> 
-    <van-search
-      bind:tap="clickSearch"
-      disabled
-      bind:focus = "clickSearch"
-      value="{{ value }}" 
-      shape="round" 
-      background="#fa2c19" 
-      placeholder="请输入搜索内容" />
-      <!-- 轮播图 -->
-      <swiper
-       swiperData = "{{ swiperData }} "
-       indicatorDots="{{swiperOptions.indicatorDots}}"
-       autoplay="{{swiperOptions.autoplay}}"
-       interval="{{swiperOptions.interval}}"
-        duration="{{swiperOptions.duration}}"
-      ></swiper>
-  </view>
-  <!--
-    如果要给nav导航实现跳转的话，先要设计出子页面，然后查阅vant weapp官方文档，添加子页面url即可
-    url放js文件的navdata，然后之间遍历url="{{item.url}}"即可
-  -->
-  <view class = "nav">
-    <van-grid column-num="4">
-    <van-grid-item icon-color="{{item.color}}" icon="{{item.icon}}" text="{{item.text}}" wx:for="{{ navData }}" />
-    </van-grid>
-  </view>
-  <goods-list></goods-list>
+<view class="index-container">
+    <view class="header">
+        <van-search bindtap="clickSearch" disabled bind:focus="clickSearch" value="{{ value }}" shape="round" background="#fa2c19" placeholder="请输入搜索关键词" />
+        <!-- 轮播图 -->
+        <swiper swiperData="{{ swiperData }}" indicatorDots="{{ swiperOptions.indicatorDots }}" autoplay="{{ swiperOptions.autoplay }}" interval="{{ swiperOptions.interval }}" duration="{{ swiperOptions.duration }}"></swiper>
+    </view>
+    <view class="nav">
+        <van-grid column-num="4">
+            <van-grid-item 
+                wx:key="index"
+                icon-color="{{ item.color }}" 
+                icon="{{ item.icon }}" 
+                text="{{ item.text }}" 
+                wx:for="{{ navData }}" />
+        </van-grid>
+    </view>
+    <goods-list goodsData="{{ goodsData }}"></goods-list>
+
 </view>

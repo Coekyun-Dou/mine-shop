@@ -16,7 +16,5 @@ interface NotifyOptions {
 declare function Notify(options: NotifyOptions | string): any;
 declare namespace Notify {
     var clear: (options?: NotifyOptions | undefined) => void;
-    var setDefaultOptions: (options: NotifyOptions) => void;
-    var resetDefaultOptions: () => void;
 }
 export default Notify;

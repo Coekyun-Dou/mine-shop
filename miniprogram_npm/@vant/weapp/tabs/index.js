@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var component_1 = require("../common/component");
 var touch_1 = require("../mixins/touch");
@@ -18,13 +7,7 @@ var validator_1 = require("../common/validator");
 var relation_1 = require("../common/relation");
 (0, component_1.VantComponent)({
     mixins: [touch_1.touch],
-    classes: [
-        'nav-class',
-        'tab-class',
-        'tab-active-class',
-        'line-class',
-        'wrap-class',
-    ],
+    classes: ['nav-class', 'tab-class', 'tab-active-class', 'line-class'],
     relation: (0, relation_1.useChildren)('tab', function () {
         this.updateTabs();
     }),
@@ -95,10 +78,6 @@ var relation_1 = require("../common/relation");
             type: Boolean,
             value: true,
         },
-        useBeforeChange: {
-            type: Boolean,
-            value: false,
-        },
     },
     data: {
         tabs: [],
@@ -109,7 +88,6 @@ var relation_1 = require("../common/relation");
         skipTransition: true,
         scrollWithAnimation: false,
         lineOffsetLeft: 0,
-        inited: false,
     },
     mounted: function () {
         var _this = this;
@@ -133,11 +111,15 @@ var relation_1 = require("../common/relation");
         },
         trigger: function (eventName, child) {
             var currentIndex = this.data.currentIndex;
-            var data = this.getChildData(currentIndex, child);
-            if (!(0, validator_1.isDef)(data)) {
+            var currentChild = child || this.children[currentIndex];
+            if (!(0, validator_1.isDef)(currentChild)) {
                 return;
             }
-            this.$emit(eventName, data);
+            this.$emit(eventName, {
+                index: currentChild.index,
+                name: currentChild.getComputedName(),
+                title: currentChild.data.title,
+            });
         },
         onTap: function (event) {
             var _this = this;
@@ -145,14 +127,13 @@ var relation_1 = require("../common/relation");
             var child = this.children[index];
             if (child.data.disabled) {
                 this.trigger('disabled', child);
-                return;
             }
-            this.onBeforeChange(index).then(function () {
-                _this.setCurrentIndex(index);
+            else {
+                this.setCurrentIndex(index);
                 (0, utils_1.nextTick)(function () {
                     _this.trigger('click');
                 });
-            });
+            }
         },
         // correct the index of active tab
         setCurrentIndexByName: function (name) {
@@ -179,9 +160,6 @@ var relation_1 = require("../common/relation");
                 });
             });
             if (currentIndex === data.currentIndex) {
-                if (!data.inited) {
-                    this.resize();
-                }
                 return;
             }
             var shouldEmitChange = data.currentIndex !== null;
@@ -223,13 +201,12 @@ var relation_1 = require("../common/relation");
                     .reduce(function (prev, curr) { return prev + curr.width; }, 0);
                 lineOffsetLeft +=
                     (rect.width - lineRect.width) / 2 + (ellipsis ? 0 : 8);
-                _this.setData({ lineOffsetLeft: lineOffsetLeft, inited: true });
+                _this.setData({ lineOffsetLeft: lineOffsetLeft });
                 _this.swiping = true;
                 if (skipTransition) {
-                    // waiting transition end
-                    setTimeout(function () {
+                    (0, utils_1.nextTick)(function () {
                         _this.setData({ skipTransition: false });
-                    }, _this.data.duration);
+                    });
                 }
             });
         },
@@ -275,15 +252,14 @@ var relation_1 = require("../common/relation");
         },
         // watch swipe touch end
         onTouchEnd: function () {
-            var _this = this;
             if (!this.data.swipeable || !this.swiping)
                 return;
             var _a = this, direction = _a.direction, deltaX = _a.deltaX, offsetX = _a.offsetX;
             var minSwipeDistance = 50;
             if (direction === 'horizontal' && offsetX >= minSwipeDistance) {
-                var index_1 = this.getAvaiableTab(deltaX);
-                if (index_1 !== -1) {
-                    this.onBeforeChange(index_1).then(function () { return _this.setCurrentIndex(index_1); });
+                var index = this.getAvaiableTab(deltaX);
+                if (index !== -1) {
+                    this.setCurrentIndex(index);
                 }
             }
             this.swiping = false;
@@ -301,27 +277,6 @@ var relation_1 = require("../common/relation");
                 }
             }
             return -1;
-        },
-        onBeforeChange: function (index) {
-            var _this = this;
-            var useBeforeChange = this.data.useBeforeChange;
-            if (!useBeforeChange) {
-                return Promise.resolve();
-            }
-            return new Promise(function (resolve, reject) {
-                _this.$emit('before-change', __assign(__assign({}, _this.getChildData(index)), { callback: function (status) { return (status ? resolve() : reject()); } }));
-            });
-        },
-        getChildData: function (index, child) {
-            var currentChild = child || this.children[index];
-            if (!(0, validator_1.isDef)(currentChild)) {
-                return;
-            }
-            return {
-                index: currentChild.index,
-                name: currentChild.getComputedName(),
-                title: currentChild.data.title,
-            };
         },
     },
 });

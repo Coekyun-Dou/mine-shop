@@ -1,24 +1,24 @@
 .header{
-  padding: 20px;
-  overflow: hidden;
-  clear: both;
-  background-color: #fff;
+    padding: 20px;
+    overflow: hidden;
+    clear: both;
+    background-color: #fff;
 }
 
 .header image{
-  width: 70px;
-  border-radius: 50%;
-  float: left;
+    width: 70px;
+    border-radius: 50%;
+    float: left;
 }
 
 .header text{
-  float: left;
-  font-size: 15px;
-  color: #333;
-  margin-top: 25px;
-  margin-left: 10px;
+    float: left;
+    font-size: 15px;
+    color: #333;
+    margin-top: 25px;
+    margin-left: 10px;
 }
 
 .service{
-  margin-top: 10px;
+    margin-top: 10px;
 }

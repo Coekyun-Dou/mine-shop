@@ -1,14 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.canIUseGetUserProfile = exports.canIUseCanvas2d = exports.canIUseNextTick = exports.canIUseGroupSetData = exports.canIUseAnimate = exports.canIUseFormFieldButton = exports.canIUseModel = exports.getSystemInfoSync = void 0;
-var systemInfo;
-function getSystemInfoSync() {
-    if (systemInfo == null) {
-        systemInfo = wx.getSystemInfoSync();
-    }
-    return systemInfo;
-}
-exports.getSystemInfoSync = getSystemInfoSync;
+exports.canIUseGetUserProfile = exports.canIUseCanvas2d = exports.canIUseNextTick = exports.canIUseGroupSetData = exports.canIUseAnimate = exports.canIUseFormFieldButton = exports.canIUseModel = void 0;
+var utils_1 = require("./utils");
 function compareVersion(v1, v2) {
     v1 = v1.split('.');
     v2 = v2.split('.');
@@ -32,7 +25,7 @@ function compareVersion(v1, v2) {
     return 0;
 }
 function gte(version) {
-    var system = getSystemInfoSync();
+    var system = (0, utils_1.getSystemInfoSync)();
     return compareVersion(system.SDKVersion, version) >= 0;
 }
 function canIUseModel() {
@@ -52,12 +45,7 @@ function canIUseGroupSetData() {
 }
 exports.canIUseGroupSetData = canIUseGroupSetData;
 function canIUseNextTick() {
-    try {
-        return wx.canIUse('nextTick');
-    }
-    catch (e) {
-        return gte('2.7.1');
-    }
+    return wx.canIUse('nextTick');
 }
 exports.canIUseNextTick = canIUseNextTick;
 function canIUseCanvas2d() {

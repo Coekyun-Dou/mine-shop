@@ -10,7 +10,7 @@ export interface File {
 }
 export declare function isImageFile(item: File): boolean;
 export declare function isVideoFile(item: File): boolean;
-export declare function chooseFile({ accept, multiple, capture, compressed, maxDuration, sizeType, camera, maxCount, mediaType, extension, }: {
+export declare function chooseFile({ accept, multiple, capture, compressed, maxDuration, sizeType, camera, maxCount, }: {
     accept: any;
     multiple: any;
     capture: any;
@@ -19,6 +19,4 @@ export declare function chooseFile({ accept, multiple, capture, compressed, maxD
     sizeType: any;
     camera: any;
     maxCount: any;
-    mediaType: any;
-    extension: any;
 }): Promise<File | File[]>;

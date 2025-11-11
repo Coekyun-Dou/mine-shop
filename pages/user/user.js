@@ -5,32 +5,32 @@ Page({
         userInfo: {},
         list:[
             {
-                text:"礼券",
+                text:"前端",
                 icon:"like",
                 color:"#ff0000"
             },
             {
-                text:"客服",
+                text:"Python",
                 icon:"star",
                 color:"#2a83fe"
             },
             {
-                text:"地址",
+                text:"Java",
                 icon:"fire",
                 color:"#fd6012"
             },
             {
-                text:"会员",
+                text:"大数据",
                 icon:"gem",
                 color:"#fd4d72"
             },
             {
-                text:"发现",
+                text:"人工智能",
                 icon:"gift",
                 color:"#00b478"
             },
             {
-                text:"设置",
+                text:"算法u",
                 icon:"shop",
                 color:"#fe391f"
             }
