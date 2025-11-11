@@ -9,6 +9,9 @@
                     <text class="nickname">{{ userInfo.nickName }}</text>
                     <text class="member-tag">普通会员</text>
                 </view>
+                <view class="logout-btn" bindtap="logout">
+                    <text>退出</text>
+                </view>
             </view>
             <view class="login-section" wx:else>
                 <image class="default-avatar" src="https://img01.yzcdn.cn/vant/user-active.png" mode="aspectFill"></image>

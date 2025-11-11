@@ -50,10 +50,23 @@ Page({
         ]
     },
     onLoad(options) {
-        // 验证用户登录信息的状态是否处于有效期：增加一个接口，然后测试有效期
-        if(wx.getStorageSync('userInfo')){
+        this.checkLoginStatus()
+    },
+    // 检查登录状态
+    checkLoginStatus() {
+        const userInfo = wx.getStorageSync('userInfo')
+        const isLogin = wx.getStorageSync('isLogin')
+        
+        if (userInfo && isLogin) {
             this.setData({
-                userInfo:wx.getStorageSync('userInfo')
+                userInfo: userInfo
+            })
+        } else {
+            // 清除可能存在的过期数据
+            wx.removeStorageSync('userInfo')
+            wx.removeStorageSync('isLogin')
+            this.setData({
+                userInfo: {}
             })
         }
     },
@@ -94,39 +107,120 @@ Page({
             })
         }
     },
+    // 用户登录
     getUserProfile() {
-        wx.getUserProfile({
-            desc: "展示用户信息",
-            success: res => {
-                this.setData({
-                    userInfo:res.userInfo
+        wx.showLoading({
+            title: '登录中...',
+            mask: true
+        })
+        
+        // 先获取微信登录code（可选，用于后续后端验证）
+        wx.login({
+            success: (loginRes) => {
+                // 获取用户信息
+                wx.getUserProfile({
+                    desc: '用于完善用户资料',
+                    success: (res) => {
+                        const userInfo = {
+                            nickName: res.userInfo.nickName,
+                            avatarUrl: res.userInfo.avatarUrl,
+                            gender: res.userInfo.gender,
+                            country: res.userInfo.country,
+                            province: res.userInfo.province,
+                            city: res.userInfo.city,
+                            language: res.userInfo.language,
+                            loginTime: Date.now(),
+                            code: loginRes.code // 保存code，可用于后续后端验证
+                        }
+                        
+                        // 保存用户信息到本地
+                        wx.setStorageSync('userInfo', userInfo)
+                        wx.setStorageSync('isLogin', true)
+                        wx.setStorageSync('loginTime', Date.now())
+                        
+                        // 更新页面数据
+                        this.setData({
+                            userInfo: userInfo
+                        })
+                        
+                        wx.hideLoading()
+                        wx.showToast({
+                            title: '登录成功',
+                            icon: 'success',
+                            duration: 2000
+                        })
+                        
+                        // 如果需要后端验证，可以在这里调用
+                        // this.sendLoginToServer(loginRes.code, userInfo)
+                    },
+                    fail: (err) => {
+                        wx.hideLoading()
+                        console.error('获取用户信息失败', err)
+                        if (err.errMsg.includes('getUserProfile:fail')) {
+                            wx.showToast({
+                                title: '需要授权才能登录',
+                                icon: 'none',
+                                duration: 2000
+                            })
+                        } else {
+                            wx.showToast({
+                                title: '登录失败，请重试',
+                                icon: 'none',
+                                duration: 2000
+                            })
+                        }
+                    }
                 })
-                this.loginHandle()
-                wx.setStorageSync('userInfo', res.userInfo)
             },
-            fail(err) {
-                console.log(err);
-            },
-            complete() {
-                console.log("获取完成");
+            fail: (err) => {
+                wx.hideLoading()
+                console.error('微信登录失败', err)
+                wx.showToast({
+                    title: '登录失败，请重试',
+                    icon: 'none',
+                    duration: 2000
+                })
             }
         })
     },
-    loginHandle(){
-        wx.login({
-            success(response){
-                // code:在发送给接口
-                /**
-                 * 如果大家使用此登录接口，使用外网服务器的情况下，必须使用我的AppID
-                 * 如果大家使用此登录接口，使用自己的服务器的情况下，需要修改服务器
-                 */
-                getLogin({code:response.code}).then(res =>{
-                    wx.setStorageSync('loginID', res.data.data)
-                })
-            },
-            fail(err){
-                console.log(err);
+    
+    // 退出登录
+    logout() {
+        wx.showModal({
+            title: '提示',
+            content: '确定要退出登录吗？',
+            success: (res) => {
+                if (res.confirm) {
+                    // 清除登录信息
+                    wx.removeStorageSync('userInfo')
+                    wx.removeStorageSync('isLogin')
+                    wx.removeStorageSync('loginTime')
+                    wx.removeStorageSync('loginID')
+                    
+                    // 更新页面
+                    this.setData({
+                        userInfo: {}
+                    })
+                    
+                    wx.showToast({
+                        title: '已退出登录',
+                        icon: 'success',
+                        duration: 2000
+                    })
+                }
             }
         })
+    },
+    
+    // 发送登录信息到服务器（可选，如果需要后端验证）
+    sendLoginToServer(code, userInfo) {
+        // 如果需要后端验证，可以调用这个接口
+        // getLogin({ code: code, userInfo: userInfo }).then(res => {
+        //     if (res.data.status === 200) {
+        //         wx.setStorageSync('loginID', res.data.data)
+        //     }
+        // }).catch(err => {
+        //     console.error('后端登录失败', err)
+        // })
     }
 })
