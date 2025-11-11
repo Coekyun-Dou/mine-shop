@@ -1,4 +1,5 @@
 const { goodsDetails: goodsDetailsList } = require("../../utils/static-data.js")
+const { addToCart } = require("../../utils/cart.js")
 
 Page({
     data: {
@@ -30,10 +31,34 @@ Page({
         })
     },
     onClickAddCart() {
-        wx.showToast({
-            title: "暂未开通购物车",
-            icon: "none"
+        const goods = this.data.goodsDetails
+        if (!goods) {
+            wx.showToast({
+                title: "商品信息错误",
+                icon: "none"
+            })
+            return
+        }
+        
+        const success = addToCart({
+            id: goods.id,
+            title: goods.title,
+            price: goods.price,
+            topimage: goods.topimage
         })
+        
+        if (success) {
+            wx.showToast({
+                title: "已加入购物车",
+                icon: "success",
+                duration: 2000
+            })
+        } else {
+            wx.showToast({
+                title: "加入失败，请重试",
+                icon: "none"
+            })
+        }
     },
     onClickBuy() {
         wx.showToast({

@@ -1,8 +1,21 @@
 <view class="cart">
-    <view class="list" wx:for="{{ cartData }}" wx:key="index">
-        <van-swipe-cell right-width="{{ 65 }}">
-            <van-card price="{{ item.price }}" title="{{ item.title }}" thumb="{{ item.image }}" />
-            <view data-id="{{ item.id }}" bindtap="delCartHandle" slot="right" class="van-swipe-cell-right">删除</view>
-        </van-swipe-cell>
+    <view wx:if="{{ cartData.length > 0 }}">
+        <view class="list" wx:for="{{ cartData }}" wx:key="id">
+            <van-swipe-cell right-width="{{ 65 }}">
+                <van-card 
+                    price="￥{{ item.price }}" 
+                    title="{{ item.title }}" 
+                    thumb="{{ item.image }}" 
+                    custom-class="cart-card" />
+                <view data-id="{{ item.id }}" bindtap="delCartHandle" slot="right" class="van-swipe-cell-right">
+                    <text>删除</text>
+                </view>
+            </van-swipe-cell>
+        </view>
+    </view>
+    <view class="empty" wx:else>
+        <image class="empty-image" src="https://img01.yzcdn.cn/vant/empty-image-default.png" mode="widthFix"></image>
+        <text class="empty-text">购物车是空的</text>
+        <text class="empty-desc">快去挑选心仪的商品吧~</text>
     </view>
 </view>
