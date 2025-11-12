@@ -2,7 +2,7 @@
 
 <view
   wx:if="{{ showWrapper }}"
-  class="{{ utils.bem('dropdown-item', direction) }} custom-class"
+  class="{{ utils.bem('dropdown-item', direction) }}"
   style="{{ wrapperStyle }}"
 >
   <van-popup
@@ -12,9 +12,7 @@
     overlay="{{ overlay }}"
     position="{{ direction === 'down' ? 'top' : 'bottom' }}"
     duration="{{ transition ? duration : 0 }}"
-    safe-area-tab-bar="{{ safeAreaTabBar }}"
     close-on-click-overlay="{{ closeOnClickOverlay }}"
-    rootPortal="{{ rootPortal }}"
     bind:enter="onOpen"
     bind:leave="onClose"
     bind:close="toggle"
@@ -32,7 +30,7 @@
     >
       <view
         slot="title"
-        class="van-dropdown-item__title item-title-class"
+        class="van-dropdown-item__title"
         style="{{ item.value === value  ? 'color:' + activeColor : '' }}"
       >
         {{ item.text }}

@@ -26,7 +26,6 @@ var animate_1 = require("./animate");
     },
     data: {
         expanded: false,
-        parentBorder: true,
     },
     mounted: function () {
         this.updateExpanded();
@@ -37,7 +36,7 @@ var animate_1 = require("./animate");
             if (!this.parent) {
                 return;
             }
-            var _a = this.parent.data, value = _a.value, accordion = _a.accordion, border = _a.border;
+            var _a = this.parent.data, value = _a.value, accordion = _a.accordion;
             var _b = this.parent.children, children = _b === void 0 ? [] : _b;
             var name = this.data.name;
             var index = children.indexOf(this);
@@ -48,7 +47,7 @@ var animate_1 = require("./animate");
             if (expanded !== this.data.expanded) {
                 (0, animate_1.setContentAnimate)(this, expanded, this.mounted);
             }
-            this.setData({ index: index, expanded: expanded, parentBorder: border });
+            this.setData({ index: index, expanded: expanded });
         },
         onClick: function () {
             if (this.data.disabled) {

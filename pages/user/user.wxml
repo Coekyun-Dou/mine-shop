@@ -1,16 +1,102 @@
 <view class="user-container">
-    <view class="header">
-        <view wx:if="{{ userInfo.nickName }}">
-            <image mode="widthFix" src="{{ userInfo.avatarUrl }}"></image>
-            <text>{{ userInfo.nickName }}</text>
-        </view>
-        <view wx:else>
-            <button type="primary" bindtap="getUserProfile">登录</button>
+    <!-- 用户头部区域 -->
+    <view class="user-header">
+        <view class="header-bg"></view>
+        <view class="user-info">
+            <view class="avatar-section" wx:if="{{ userInfo.nickName }}">
+                <image class="avatar" mode="aspectFill" src="{{ userInfo.avatarUrl }}"></image>
+                <view class="user-detail">
+                    <text class="nickname">{{ userInfo.nickName }}</text>
+                    <text class="member-tag">普通会员</text>
+                </view>
+                <view class="logout-btn" bindtap="logout">
+                    <text>退出</text>
+                </view>
+            </view>
+            <view class="login-section" wx:else>
+                <image class="default-avatar" src="https://img01.yzcdn.cn/vant/user-active.png" mode="aspectFill"></image>
+                <button class="login-btn" bindtap="getUserProfile">点击登录</button>
+            </view>
         </view>
     </view>
-    <view class="service">
-        <van-grid column-num="3">
-            <van-grid-item url="/pages/search/search" icon-color="{{ item.color }}" wx:for="{{ list }}" wx:key="index" icon="{{ item.icon }}" text="{{ item.text }}" />
-        </van-grid>
+
+    <!-- 订单管理区域 -->
+    <view class="order-section">
+        <view class="order-header" bindtap="clickAllOrders">
+            <text class="order-title">我的订单</text>
+            <text class="order-more">查看全部 ></text>
+        </view>
+        <view class="order-grid">
+            <view class="order-item" bindtap="clickOrder" data-type="unpaid">
+                <view class="order-icon unpaid">
+                    <van-icon name="balance-pay" size="48rpx" color="#fa2c19" />
+                </view>
+                <text class="order-text">待付款</text>
+                <view class="order-badge" wx:if="{{ orderCount.unpaid > 0 }}">{{ orderCount.unpaid }}</view>
+            </view>
+            <view class="order-item" bindtap="clickOrder" data-type="unshipped">
+                <view class="order-icon unshipped">
+                    <van-icon name="logistics" size="48rpx" color="#fa2c19" />
+                </view>
+                <text class="order-text">待发货</text>
+                <view class="order-badge" wx:if="{{ orderCount.unshipped > 0 }}">{{ orderCount.unshipped }}</view>
+            </view>
+            <view class="order-item" bindtap="clickOrder" data-type="unreceived">
+                <view class="order-icon unreceived">
+                    <van-icon name="shopping-cart-o" size="48rpx" color="#fa2c19" />
+                </view>
+                <text class="order-text">待收货</text>
+                <view class="order-badge" wx:if="{{ orderCount.unreceived > 0 }}">{{ orderCount.unreceived }}</view>
+            </view>
+            <view class="order-item" bindtap="clickOrder" data-type="unevaluated">
+                <view class="order-icon unevaluated">
+                    <van-icon name="comment-o" size="48rpx" color="#fa2c19" />
+                </view>
+                <text class="order-text">待评价</text>
+                <view class="order-badge" wx:if="{{ orderCount.unevaluated > 0 }}">{{ orderCount.unevaluated }}</view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 快捷功能区域 -->
+    <view class="quick-section">
+        <view class="quick-item" bindtap="clickMenu" data-index="0">
+            <view class="quick-icon" style="background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);">
+                <van-icon name="like-o" size="40rpx" color="#ffffff" />
+            </view>
+            <text class="quick-text">我的收藏</text>
+        </view>
+        <view class="quick-item" bindtap="clickMenu" data-index="1">
+            <view class="quick-icon" style="background: linear-gradient(135deg, #ff6b35 0%, #ff8c5a 100%);">
+                <van-icon name="coupon-o" size="40rpx" color="#ffffff" />
+            </view>
+            <text class="quick-text">优惠券</text>
+        </view>
+        <view class="quick-item" bindtap="clickMenu" data-index="2">
+            <view class="quick-icon" style="background: linear-gradient(135deg, #fd4d72 0%, #ff6b8a 100%);">
+                <van-icon name="gem-o" size="40rpx" color="#ffffff" />
+            </view>
+            <text class="quick-text">积分商城</text>
+        </view>
+        <view class="quick-item" bindtap="clickMenu" data-index="3">
+            <view class="quick-icon" style="background: linear-gradient(135deg, #2a83fe 0%, #5ba0ff 100%);">
+                <van-icon name="location-o" size="40rpx" color="#ffffff" />
+            </view>
+            <text class="quick-text">收货地址</text>
+        </view>
+    </view>
+
+    <!-- 服务功能区域 -->
+    <view class="service-section">
+        <view class="service-item" bindtap="clickMenu" data-index="4">
+            <van-icon name="chat-o" size="36rpx" color="#666666" />
+            <text class="service-text">客服中心</text>
+            <van-icon name="arrow" size="28rpx" color="#cccccc" />
+        </view>
+        <view class="service-item" bindtap="clickMenu" data-index="5">
+            <van-icon name="info-o" size="36rpx" color="#666666" />
+            <text class="service-text">关于我们</text>
+            <van-icon name="arrow" size="28rpx" color="#cccccc" />
+        </view>
     </view>
 </view>

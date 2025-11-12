@@ -35,9 +35,7 @@ function getContext() {
 }
 function Toast(toastOptions) {
     var options = __assign(__assign({}, currentOptions), parseOptions(toastOptions));
-    var context = (typeof options.context === 'function'
-        ? options.context()
-        : options.context) || getContext();
+    var context = options.context || getContext();
     var toast = context.selectComponent(options.selector);
     if (!toast) {
         console.warn('未找到 van-toast 节点，请确认 selector 及 context 是否正确');

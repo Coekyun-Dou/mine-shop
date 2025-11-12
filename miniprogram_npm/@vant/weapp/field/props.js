@@ -2,7 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.textareaProps = exports.inputProps = exports.commonProps = void 0;
 exports.commonProps = {
-    value: String,
+    value: {
+        type: String,
+        observer: function (value) {
+            if (value !== this.value) {
+                this.setData({ innerValue: value });
+                this.value = value;
+            }
+        },
+    },
     placeholder: String,
     placeholderStyle: String,
     placeholderClass: String,

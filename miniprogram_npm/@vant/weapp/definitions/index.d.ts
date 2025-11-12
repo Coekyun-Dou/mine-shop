@@ -4,9 +4,8 @@ interface VantComponentInstance {
     children: WechatMiniprogram.Component.TrivialInstance[];
     index: number;
     $emit: (name: string, detail?: unknown, options?: WechatMiniprogram.Component.TriggerEventOption) => void;
-    setView: (value: Record<string, any>, callback?: () => void) => void;
 }
-export type VantComponentOptions<Data extends WechatMiniprogram.Component.DataOption, Props extends WechatMiniprogram.Component.PropertyOption, Methods extends WechatMiniprogram.Component.MethodOption> = {
+export declare type VantComponentOptions<Data extends WechatMiniprogram.Component.DataOption, Props extends WechatMiniprogram.Component.PropertyOption, Methods extends WechatMiniprogram.Component.MethodOption> = {
     data?: Data;
     field?: boolean;
     classes?: string[];
@@ -16,7 +15,6 @@ export type VantComponentOptions<Data extends WechatMiniprogram.Component.DataOp
         relations: Record<string, WechatMiniprogram.Component.RelationOption>;
         mixin: string;
     };
-    watch?: Record<string, (...args: any[]) => any>;
     methods?: Methods;
     beforeCreate?: () => void;
     created?: () => void;

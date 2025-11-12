@@ -6,5 +6,6 @@
     "van-grid-item": "@vant/weapp/grid-item/index",
     "van-icon": "@vant/weapp/icon/index",
     "goods-list":"../../components/goods-list/goods-list"
-  }
+  },
+  "onReachBottomDistance": 60
 }

@@ -1,7 +1,21 @@
-<import src="./overlay.wxml" />
-
-<root-portal wx:if="{{ rootPortal }}">
-  <include src="./overlay.wxml" />
-</root-portal>
-
-<include wx:else src="./overlay.wxml" />
+<van-transition
+  wx:if="{{ lockScroll }}"
+  show="{{ show }}"
+  custom-class="van-overlay"
+  custom-style="z-index: {{ zIndex }}; {{ customStyle }}"
+  duration="{{ duration }}"
+  bind:tap="onClick"
+  catch:touchmove="noop"
+>
+  <slot></slot>
+</van-transition>
+<van-transition
+  wx:else
+  show="{{ show }}"
+  custom-class="van-overlay"
+  custom-style="z-index: {{ zIndex }}; {{ customStyle }}"
+  duration="{{ duration }}"
+  bind:tap="onClick"
+>
+  <slot></slot>
+</van-transition>

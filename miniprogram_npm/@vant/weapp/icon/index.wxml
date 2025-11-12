@@ -9,7 +9,7 @@
     wx:if="{{ info !== null || dot }}"
     dot="{{ dot }}"
     info="{{ info }}"
-    custom-class="van-icon__info info-class"
+    custom-class="van-icon__info"
   />
   <image
     wx:if="{{ computed.isImage(name) }}"

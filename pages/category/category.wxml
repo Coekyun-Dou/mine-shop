@@ -1,2 +1,63 @@
-<!--pages/category/category.wxml-->
-<text>pages/category/category.wxml</text>
+<view class="category-page">
+    <view class="sidebar">
+        <van-sidebar active-key="{{ activeKey }}" custom-class="sidebar-custom" active-color="#fa2c19">
+            <block wx:for="{{ sliderData }}" wx:key="index">
+                <van-sidebar-item
+                    data-index="{{ index }}"
+                    data-title="{{ item.text }}"
+                    bindtap="clickItemNav"
+                    custom-class="sidebar-item"
+                    title-class="sidebar-item__title"
+                    title="{{ item.text }}" />
+            </block>
+        </van-sidebar>
+    </view>
+    <view class="content">
+        <view class="hero" wx:if="{{ heroCategory }}">
+            <image class="hero-image" src="{{ heroCategory.image }}" mode="aspectFill"></image>
+            <view class="hero-mask"></view>
+            <view class="hero-text">
+                <text class="hero-tag">{{ heroCategory.cate }}</text>
+                <text class="hero-title">{{ heroCategory.tag }}</text>
+                <text class="hero-desc">甄选荔枝好物，为你呈现地方风味与文化故事。</text>
+            </view>
+        </view>
+        <view class="card-grid" wx:if="{{ categoryData.length }}">
+            <block wx:for="{{ categoryData }}" wx:key="index">
+                <view class="category-card" bindtap="clickItem" data-cate="{{ item.cate }}" data-tag="{{ item.tag }}">
+                    <image class="card-image" src="{{ item.image }}" mode="aspectFill"></image>
+                    <view class="card-body">
+                        <text class="card-title">{{ item.tag }}</text>
+                        <text class="card-subtitle">{{ item.cate }}</text>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <view class="empty" wx:else>
+            <image src="https://img01.yzcdn.cn/vant/empty-image-default.png" mode="widthFix"></image>
+            <text>暂无此分类的内容，敬请期待。</text>
+        </view>
+        
+        <!-- 推荐商品区域 -->
+        <view class="recommend-section" wx:if="{{ recommendGoods.length > 0 }}">
+            <view class="section-header">
+                <text class="section-title">推荐商品</text>
+                <text class="section-more" bindtap="viewMore">查看更多 ></text>
+            </view>
+            <view class="goods-grid">
+                <block wx:for="{{ recommendGoods }}" wx:key="id">
+                    <view class="goods-item" bindtap="clickGoods" data-id="{{ item.id }}">
+                        <image class="goods-image" src="{{ item.url }}" mode="aspectFill"></image>
+                        <view class="goods-info">
+                            <text class="goods-title">{{ item.title }}</text>
+                            <view class="goods-price">
+                                <text class="price-symbol">￥</text>
+                                <text class="price-value">{{ item.price }}</text>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+</view>

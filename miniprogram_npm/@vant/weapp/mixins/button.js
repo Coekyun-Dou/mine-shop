@@ -6,7 +6,6 @@ exports.button = Behavior({
     externalClasses: ['hover-class'],
     properties: {
         id: String,
-        buttonId: String,
         lang: String,
         businessId: Number,
         sessionFrom: String,
@@ -32,9 +31,6 @@ exports.button = Behavior({
         onGetPhoneNumber: function (event) {
             this.triggerEvent('getphonenumber', event.detail);
         },
-        onGetRealTimePhoneNumber: function (event) {
-            this.triggerEvent('getrealtimephonenumber', event.detail);
-        },
         onError: function (event) {
             this.triggerEvent('error', event.detail);
         },
@@ -43,9 +39,6 @@ exports.button = Behavior({
         },
         onOpenSetting: function (event) {
             this.triggerEvent('opensetting', event.detail);
-        },
-        onAgreePrivacyAuthorization: function (event) {
-            this.triggerEvent('agreeprivacyauthorization', event.detail);
         },
         onChooseAvatar: function (event) {
             this.triggerEvent('chooseavatar', event.detail);

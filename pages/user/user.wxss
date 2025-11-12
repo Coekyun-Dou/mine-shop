@@ -1,24 +1,244 @@
-.header{
-  padding: 20px;
-  overflow: hidden;
-  clear: both;
-  background-color: #fff;
+.user-container {
+    min-height: 100vh;
+    background: #f5f5f5;
 }
 
-.header image{
-  width: 70px;
-  border-radius: 50%;
-  float: left;
+/* 用户头部区域 */
+.user-header {
+    position: relative;
+    height: 320rpx;
+    overflow: hidden;
 }
 
-.header text{
-  float: left;
-  font-size: 15px;
-  color: #333;
-  margin-top: 25px;
-  margin-left: 10px;
+.header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #fa2c19 0%, #ff7152 100%);
 }
 
-.service{
-  margin-top: 10px;
+.user-info {
+    position: relative;
+    z-index: 1;
+    padding: 80rpx 32rpx 40rpx;
+    display: flex;
+    align-items: center;
+}
+
+.avatar-section {
+    display: flex;
+    align-items: center;
+    gap: 24rpx;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.avatar {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    border: 4rpx solid rgba(255, 255, 255, 0.3);
+    background: #ffffff;
+}
+
+.user-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 12rpx;
+}
+
+.nickname {
+    font-size: 36rpx;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.member-tag {
+    display: inline-block;
+    padding: 4rpx 16rpx;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20rpx;
+    font-size: 22rpx;
+    color: #ffffff;
+    width: fit-content;
+}
+
+.login-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24rpx;
+}
+
+.default-avatar {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    border: 4rpx solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.login-btn {
+    padding: 12rpx 48rpx;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2rpx solid rgba(255, 255, 255, 0.5);
+    border-radius: 40rpx;
+    color: #ffffff;
+    font-size: 28rpx;
+    line-height: 1.5;
+}
+
+.login-btn::after {
+    border: none;
+}
+
+/* 订单管理区域 */
+.order-section {
+    margin: -40rpx 24rpx 24rpx;
+    background: #ffffff;
+    border-radius: 24rpx;
+    padding: 32rpx;
+    box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.08);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32rpx;
+    padding-bottom: 24rpx;
+    border-bottom: 1rpx solid #f0f0f0;
+}
+
+.order-title {
+    font-size: 32rpx;
+    font-weight: 600;
+    color: #191919;
+}
+
+.order-more {
+    font-size: 24rpx;
+    color: #999999;
+}
+
+.order-grid {
+    display: flex;
+    justify-content: space-around;
+}
+
+.order-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16rpx;
+    flex: 1;
+}
+
+.order-icon {
+    width: 88rpx;
+    height: 88rpx;
+    border-radius: 50%;
+    background: #fff5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-text {
+    font-size: 24rpx;
+    color: #666666;
+}
+
+.order-badge {
+    position: absolute;
+    top: -8rpx;
+    right: 8rpx;
+    min-width: 32rpx;
+    height: 32rpx;
+    padding: 0 8rpx;
+    background: #fa2c19;
+    border-radius: 16rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20rpx;
+    color: #ffffff;
+    line-height: 1;
+}
+
+/* 快捷功能区域 */
+.quick-section {
+    display: flex;
+    justify-content: space-around;
+    background: #ffffff;
+    margin: 0 24rpx 24rpx;
+    padding: 40rpx 0;
+    border-radius: 24rpx;
+    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.quick-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16rpx;
+    flex: 1;
+}
+
+.quick-icon {
+    width: 96rpx;
+    height: 96rpx;
+    border-radius: 24rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+
+.quick-text {
+    font-size: 24rpx;
+    color: #333333;
+}
+
+/* 服务功能区域 */
+.service-section {
+    background: #ffffff;
+    margin: 0 24rpx 24rpx;
+    border-radius: 24rpx;
+    overflow: hidden;
+    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    padding: 32rpx;
+    border-bottom: 1rpx solid #f0f0f0;
+}
+
+.service-item:last-child {
+    border-bottom: none;
+}
+
+.service-text {
+    flex: 1;
+    margin-left: 24rpx;
+    font-size: 28rpx;
+    color: #333333;
+}
+
+.logout-btn {
+    padding: 8rpx 24rpx;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1rpx solid rgba(255, 255, 255, 0.4);
+    border-radius: 30rpx;
+    font-size: 24rpx;
+    color: #ffffff;
+}
+
+.logout-btn:active {
+    background: rgba(255, 255, 255, 0.3);
 }

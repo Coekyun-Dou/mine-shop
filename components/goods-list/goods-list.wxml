@@ -1,24 +1,15 @@
-<view class = "list">
-  <view class = "item">
-    <view class = "goods_img">
-      <image mode = "widthFix" src = " "></image>
+<view class="list">
+    <view class="item" wx:for="{{ goodsData }}" wx:key="index">
+        <navigator url="/pages/details/details?id={{ item.id }}">
+            <view class="goods_img">
+                <image mode="widthFix" src="{{ item.url }}"></image>
+            </view>
+            <view class="goods_info">
+                <text class="goods_name">{{ item.title }}</text>
+                <view class="goods_price">
+                    ￥<text>{{ item.price }}</text>
+                </view>
+            </view>
+        </navigator>
     </view>
-    <view class = "goods_info">
-      <text calss = "goods_name">【顺丰冷链】正宗现摘妃子笑荔枝新鲜妃子笑现货新鲜当季水果整箱</text>
-      <view class = "goods_price">
-        ￥<text>49.41</text>
-      </view>
-    </view>
-  </view>
-  <view class = "item">
-    <view class = "goods_img">
-      <image mode = "widthFix" src = " "></image>
-    </view>
-    <view class = "goods_info">
-      <text calss = "goods_name">【顺丰冷链】正宗现摘妃子笑荔枝新鲜妃子笑现货新鲜当季水果整箱</text>
-      <view class = "goods_price">
-        ￥<text>49.41</text>
-      </view>
-    </view>
-  </view>
 </view>
