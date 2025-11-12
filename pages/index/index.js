@@ -13,42 +13,42 @@ Page({
         navData: [
             {
                 text: "云荔爆款",
-                icon: "like",
+                icon: "hot",
                 color: "#ff0000"
             },
             {
                 text: "限时特惠",
-                icon: "star",
+                icon: "discount",
                 color: "#ff0000"
             },
             {
                 text: "文创周边",
-                icon: "fire",
-                color: "#ff0000"
-            },
-            {
-                text: "荔枝文化",
                 icon: "gift",
                 color: "#ff0000"
             },
             {
+                text: "商品收藏",
+                icon: "like",
+                color: "#ff0000"
+            },
+            {
+                text: "果树认购",
+                icon: "new",
+                color: "#ff0000"
+            },
+            {
                 text: "荔枝制品",
-                icon: "phone",
+                icon: "goods-collect",
                 color: "#ff0000"
             },
             {
-                text: "新鲜荔枝",
-                icon: "gem",
+                text: "荔枝文化",
+                icon: "records",
                 color: "#ff0000"
             },
             {
-                text: "妃子笑",
-                icon: "gift-card",
-                color: "#ff0000"
-            },
-            {
-                text: "荔枝摆件",
-                icon: "smile",
+                text: "研学旅行",
+                icon: "map-marked",
                 color: "#ff0000"
             }
         ],
